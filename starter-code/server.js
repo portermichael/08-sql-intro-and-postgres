@@ -13,8 +13,9 @@ const app = express();
 // DONE: Complete the connection string for the url that will connect to your local postgres database
 // Windows and Linux users; You should have retained the user/pw from the pre-work for this course.
 // Your url may require that it's composed of additional information including user and password
-const conString = 'postgres://postgres:passwordhere@localhost:5432/kilovolt';
+
 // const conString = 'postgres://localhost:5432';
+const conString = 'postgres://postgres:freeze1019@localhost:5432/kilovolt';
 
 // DONE: Our pg module has a Client constructor that accepts one argument: the conString we just defined.
 //       This is how it knows the URL and, for Windows and Linux users, our username and password for our
@@ -35,10 +36,13 @@ app.use(express.static('./public'));
 // REVIEW: Routes for requesting HTML resources
 app.get('/new', function(request, response) {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Identify which line(s) of code from the client-side blog app are interacting with this particular piece of `server.js`, and the name of the method. Do those lines of code interact with or invoke a different portion of the blog, and if so, where? What part of CRUD is being enacted/managed by this particular piece of code?
+
   // 1) Numbers 5. This function is getting the new.html page.
   // 2) We're sending the new.html page, so any functions on that page are getting activated. We see articleView.initNewArticlePage is getting called, and that is in articleView.js line 76.
   // 3) articleView.initNewArticlePage shows the tab-content class and we have two event listeners on the new-form id. The event listeners invoke additional functions, articleView.create and articleView.submit, to populate the preview and submit the content to the database.
   // 4) We're reading the new.html file, and on this html file we can create a new blog post, although that isn't directly in this function.
+
+
   response.sendFile('new.html', {root: './public'});
 });
 
